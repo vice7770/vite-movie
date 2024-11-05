@@ -11,7 +11,7 @@ Our states will be managed by zustand/Reactquery. React-query might be a overkil
 
 MileStones:
 X Get the data to fetch.(Will only use the page1 of the returned api for my carousels)
-Necessary api calls with types, top movies, top series, romance, comedy.
+X Necessary api calls with types, top movies, top series, romance, comedy.(Will skip for now, romance and comedy)
 UI for Main page, 4 couressel
 Get routing working to redirect to other pages with param.
 Install state management zustand and React Query, keep state of selected element selected.
