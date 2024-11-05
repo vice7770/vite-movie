@@ -10,7 +10,7 @@ Our routing will be managed using react-router.
 Our states will be managed by zustand/Reactquery. React-query might be a overkill for this app but i it will manage error and loading states for me plus its standard in the industry.
 
 MileStones:
-Get the data to fetch.
+X Get the data to fetch.(Will only use the page1 of the returned api for my carousels)
 Necessary api calls with types, top movies, top series, romance, comedy.
 UI for Main page, 4 couressel
 Get routing working to redirect to other pages with param.
