@@ -14,7 +14,7 @@ X Get the data to fetch.(Will only use the page1 of the returned api for my caro
 X Necessary api calls with types, top movies, top series, romance, comedy.(Will skip for now, romance and comedy)
 X UI for Main page, 4 couressel(Missing the 2 other categories)
 X Get routing working to redirect to other pages with param.
-Details Screen
+X Details Screen
 Install state management zustand and React Query, keep state of selected element selected.
 Optional:
 Search with searchParams, maybe debounce for request.
