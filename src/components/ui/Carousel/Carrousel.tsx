@@ -14,6 +14,7 @@ import { getImageURL } from '@/lib/utils';
 import clsx from 'clsx';
 
 import playIcon from '@/assets/playIcon.svg';
+import { useNavigate } from 'react-router';
 
 interface Props {
     elements: {
@@ -27,10 +28,11 @@ interface Props {
 function Carousel( props : Props) {
     const { elements } = props;
     const [hoveredId, setHoveredId] = useState<number | null>(null);
+    const navigate = useNavigate();
 
-    const handleClick = (id: number) => {
-        if(hoveredId === id){
-            console.log('clicked', id);
+    const handleClick = (index: number, id: number) => {
+        if(hoveredId === index){
+            navigate(`/details/${id}`);
         }
     }
     return (
@@ -53,12 +55,12 @@ function Carousel( props : Props) {
                 className="flex w-full h-[400px]"
             >
                 {elements.map((elem, index) => (
-                    <SwiperSlide 
+                    <SwiperSlide
                         key={index} 
                         className={clsx("flex w-full text-center text-white bg-black")} 
                         style={{ transition: 'height 0.5s ease-in-out' }}
                         onMouseEnter={() => setHoveredId(index)}
-                        onClick={() => handleClick(index)}
+                        onClick={() => handleClick(index, elem.id)}
                     >
                         <div className={clsx('flex flex-col items-center justify-center w-full h-full transition-transform duration-300', {
                             'transform scale-105': hoveredId === index,
