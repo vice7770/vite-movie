@@ -1,4 +1,4 @@
-import { MovieResponse, TVShowResponse, DetailsMovieResponse } from "@/types/api";
+import { MovieResponse, TVShowResponse, DetailsMovieResponse, DetailsTVShowResponse } from "@/types/api";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -38,6 +38,15 @@ export const getTVSeries = async (): Promise<TVShowResponse> => {
 
 export const getMovieDetails = async (id: string): Promise<DetailsMovieResponse> => {
   const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+}
+
+export const getTVShowDetails = async (id: string): Promise<DetailsTVShowResponse> => {
+  const url = `https://api.themoviedb.org/3/tv/${id}?language=en-US`;
   const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error('Network response was not ok');

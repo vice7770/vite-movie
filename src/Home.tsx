@@ -51,7 +51,7 @@ function Home() {
             {(isLoadingMovies || errorMovies) ? (
               <LoadingError isLoading={isLoadingMovies} error={!!errorMovies} />
             ) : (
-              <Carousel elements={dataTrendingMovies?.results || []} />
+              <Carousel elements={dataTrendingMovies?.results || []} type='movie' />
             )}
           </div>
           <div>
@@ -59,7 +59,7 @@ function Home() {
             {(isLoadingSeries || errorSeries) ? (
               <LoadingError isLoading={isLoadingSeries} error={!!errorSeries} />
             ) : (
-              <Carousel elements={dataTrendingSeries?.results || []} />
+              <Carousel elements={dataTrendingSeries?.results || []} type='tv' />
             )}
           </div>
         </div>

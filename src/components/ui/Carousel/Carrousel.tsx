@@ -23,16 +23,17 @@ interface Props {
         poster_path: string;
         name?: string;
     }[];
+    type?: 'movie' | 'tv';
 }
   
 function Carousel( props : Props) {
-    const { elements } = props;
+    const { elements, type } = props;
     const [hoveredId, setHoveredId] = useState<number | null>(null);
     const navigate = useNavigate();
 
     const handleClick = (index: number, id: number) => {
         if(hoveredId === index){
-            navigate(`/details/${id}`);
+            navigate(`/details/${type}/${id}`);
         }
     }
     return (
