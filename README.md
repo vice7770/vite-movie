@@ -19,4 +19,4 @@ X Install state management zustand and React Query, keep state of selected eleme
 X Working Query states for both Home and De tails, with its individual requests and queryKeys.
 X Adding missing geners to the Home page
 Optional:
-Search with searchParams, maybe debounce for request.
+Search with searchParams, maybe debounce for request.( should have search by tv or movies, debounce for not making the request on every input change)
