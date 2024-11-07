@@ -5,20 +5,7 @@ import Carousel from './components/ui/Carousel/Carrousel';
 import { MovieResponse, TVShowResponse } from './types/api';
 import { getMovies, getTVSeries } from './lib/utils';
 import { useQuery } from '@tanstack/react-query';
-
-interface LoadingErrorProps {
-  isLoading: boolean;
-  error: boolean;
-}
-
-const LoadingError: React.FC<LoadingErrorProps> = ({ isLoading, error }) => {
-  return (
-    <div className='flex w-full h-[400px] bg-black text-white items-center justify-center'>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>Error while fetching, please refresh the page</p>}
-    </div>
-  );
-};
+import LoadingError from './components/ui/LoadingErrorComponent';
 
 function Home() {
   const {

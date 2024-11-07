@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DetailsMovieResponse, DetailsTVShowResponse } from '@/types/api';
 import { getImageURL, getMovieDetails, getTVShowDetails } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
+import LoadingError from '@/components/ui/LoadingErrorComponent';
 
 interface Props {
     id: string;
@@ -83,23 +84,29 @@ function DetailsPage(props : Props) {
         )}
         {!isFullScreen && (
             <div className="flex flex-col w-full p-4 bg-black bg-opacity-75 text-white gap-y-3">
-                <div className='flex w-full h-[400px] justify-center my-10'>
-                    <img src={getImageURL(data?.poster_path ?? '')} alt={data?.id.toString()} className='h-full w-full object-contain' />
-                </div>
-                <div className="flex items-center justify-center gap-x-10">
-                    <h1 className="text-2xl font-bold mb-2">Big Buck Bunny</h1>
-                    <button
-                    onClick={handlePlayFullScreen}
-                    className="bg-white text-black px-4 py-2 rounded"
-                    >
-                    Play Trailer
-                    </button>
-                </div>
-                <p className="mb-2">{data?.vote_average}/10</p>
-                <p className="mb-2">{data?.genres.map(elem => elem.name).join(', ')}</p>
-                <p className="mb-4">
-                    {data?.overview}
-                </p>
+                {(isLoading || error) ? (
+                    <LoadingError isLoading={isLoading} error={!!error} />
+                ) : (
+                    <>
+                        <div className='flex w-full h-[400px] justify-center my-10'>
+                            <img src={getImageURL(data?.poster_path ?? '')} alt={data?.id.toString()} className='h-full w-full object-contain' />
+                        </div>
+                        <div className="flex items-center justify-center gap-x-10">
+                            <h1 className="text-2xl font-bold mb-2">Big Buck Bunny</h1>
+                            <button
+                            onClick={handlePlayFullScreen}
+                            className="bg-white text-black px-4 py-2 rounded"
+                            >
+                            Play Trailer
+                            </button>
+                        </div>
+                        <p className="mb-2">{data?.vote_average}/10</p>
+                        <p className="mb-2">{data?.genres.map(elem => elem.name).join(', ')}</p>
+                        <p className="mb-4">
+                            {data?.overview}
+                        </p>
+                    </>
+                )}
             </div>
         )}
         </div>
