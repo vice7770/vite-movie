@@ -16,6 +16,7 @@ X UI for Main page, 4 couressel(Missing the 2 other categories)
 X Get routing working to redirect to other pages with param.
 X Details Screen
 X Install state management zustand and React Query, keep state of selected element selected. (Zustand wont be needed).
-X Working Query states for both Home and Details, with its individual requests and queryKeys.
+X Working Query states for both Home and De tails, with its individual requests and queryKeys.
+X Adding missing geners to the Home page
 Optional:
 Search with searchParams, maybe debounce for request.

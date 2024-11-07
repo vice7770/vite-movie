@@ -18,7 +18,7 @@ const options = {
   }
 };
 
-export const getMovies = async (): Promise<MovieResponse> => {
+export const getTrendingMovies = async (): Promise<MovieResponse> => {
   const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
   const response = await fetch(url, options);
   if (!response.ok) {
@@ -27,7 +27,7 @@ export const getMovies = async (): Promise<MovieResponse> => {
   return response.json();
 };
 
-export const getTVSeries = async (): Promise<TVShowResponse> => {
+export const getTrendingTVSeries = async (): Promise<TVShowResponse> => {
   const url = 'https://api.themoviedb.org/3/trending/tv/day?language=en-US';
   const response = await fetch(url, options);
   if (!response.ok) {
@@ -47,6 +47,24 @@ export const getMovieDetails = async (id: string): Promise<DetailsMovieResponse>
 
 export const getTVShowDetails = async (id: string): Promise<DetailsTVShowResponse> => {
   const url = `https://api.themoviedb.org/3/tv/${id}?language=en-US`;
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+}
+
+export const getRomanticMovies = async (): Promise<MovieResponse> => {
+  const url = 'https://api.themoviedb.org/3/discover/movie?with_genres=10749&language=en-US';
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+}
+
+export const getComedyMovies = async (): Promise<MovieResponse> => {
+  const url = 'https://api.themoviedb.org/3/discover/movie?with_genres=35&language=en-US';
   const response = await fetch(url, options);
   if (!response.ok) {
     throw new Error('Network response was not ok');
