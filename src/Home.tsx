@@ -1,58 +1,44 @@
-import { useEffect, useState } from 'react'
+import React from 'react'
 import './App.css'
 import Hero from './components/LandingPage/Hero'
 import Carousel from './components/ui/Carousel/Carrousel';
 import { MovieResponse, TVShowResponse } from './types/api';
+import { getMovies, getTVSeries } from './lib/utils';
+import { useQuery } from '@tanstack/react-query';
+
+interface LoadingErrorProps {
+  isLoading: boolean;
+  error: boolean;
+}
+
+const LoadingError: React.FC<LoadingErrorProps> = ({ isLoading, error }) => {
+  return (
+    <div className='flex w-full h-[400px] bg-black text-white items-center justify-center'>
+      {isLoading && <p>Loading...</p>}
+      {error && <p>Error while fetching, please refresh the page</p>}
+    </div>
+  );
+};
 
 function Home() {
-  const [dataTrendingMovies, setDataTrendingMovies] = useState<MovieResponse | null>(null);
-  const [dataTrendingSeries, setDataTrendingSeries] = useState<TVShowResponse | null>(null);
-  const [dataRomantic, setDataRomantic] = useState([]);
-  const [dataComedy, setDataComedy] = useState([]);
+  const {
+    data: dataTrendingMovies,
+    error: errorMovies,
+    isLoading: isLoadingMovies,
+  } = useQuery<MovieResponse>({
+    queryKey: ["trendingMovies"],
+    queryFn: getMovies,
+  });
 
-  useEffect(() => {
-    const fetchData = async (url: string, setData:React.Dispatch<React.SetStateAction<never[]>>) => {
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          Authorization: 'Bearer ' + import.meta.env.VITE_API_TOKEN
-        }
-      };
-      try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    const fetchDataTrendingMovies = () => {
-      const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
-      fetchData(url, setDataTrendingMovies);
-    };
+  const {
+    data: dataTrendingSeries,
+    error: errorSeries,
+    isLoading: isLoadingSeries,
+  } = useQuery<TVShowResponse>({
+    queryKey: ["trendingSeries"],
+    queryFn: getTVSeries,
+  });
 
-    const fetchDataTrendingSeries = () => {
-      const url = 'https://api.themoviedb.org/3/trending/tv/day?language=en-US';
-      fetchData(url, setDataTrendingSeries);
-    };
-
-    const fetchDataRomantic = () => {
-      const url = 'https://api.themoviedb.org/3/search/movie?query=romantic&include_adult=false&language=en-US&page=1';
-      fetchData(url, setDataRomantic);
-    };
-
-    const fetchingDataComedy = () => {
-      const url = 'https://api.themoviedb.org/3/search/movie?query=comedy&include_adult=false&language=en-US&page=1';
-      fetchData(url, setDataComedy);
-    };
-
-    fetchDataTrendingMovies();
-    fetchDataTrendingSeries();
-    // fetchDataRomantic();
-    // fetchingDataComedy();
-
-  }, [])
   return (
     <>
       <div className='flex w-screen h-[400px]'>
@@ -62,11 +48,19 @@ function Home() {
         <div className='w-full h-[1200px] gap-y-5'>
           <div>
             <h2 className='text-2xl font-bold text-white'>Movies</h2>
-            <Carousel elements={dataTrendingMovies?.results ?? []} />
+            {(isLoadingMovies || errorMovies) ? (
+              <LoadingError isLoading={isLoadingMovies} error={!!errorMovies} />
+            ) : (
+              <Carousel elements={dataTrendingMovies?.results || []} />
+            )}
           </div>
           <div>
             <h2 className='text-2xl font-bold text-white'>TV Shows</h2>
-            <Carousel elements={dataTrendingSeries?.results ?? []} />
+            {(isLoadingSeries || errorSeries) ? (
+              <LoadingError isLoading={isLoadingSeries} error={!!errorSeries} />
+            ) : (
+              <Carousel elements={dataTrendingSeries?.results || []} />
+            )}
           </div>
         </div>
       </div>
