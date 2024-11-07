@@ -102,7 +102,7 @@ function DetailsPage(props : Props) {
                                 Play Trailer
                             </button>
                         </div>
-                        <p className="mb-2">{data?.vote_average}/10</p>
+                        <p className="mb-2">{data?.vote_average.toPrecision(2)}/10</p>
                         <p className="mb-2">{data?.genres.map(elem => elem.name).join(', ')}</p>
                         <p className="mb-4">
                             {data?.overview}
