@@ -5,7 +5,7 @@ import Carousel from './components/ui/Carousel/Carrousel';
 import { MovieResponse, TVShowResponse } from './types/api';
 import { getTrendingMovies, getTrendingTVSeries, getComedyMovies, getRomanticMovies } from './lib/utils';
 import { useQuery } from '@tanstack/react-query';
-import LoadingError from './components/ui/LoadingErrorComponent';
+import LoadingError from './components/LoadingErrorComponent';
 
 function Home() {
   const {

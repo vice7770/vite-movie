@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { DetailsMovieResponse, DetailsTVShowResponse } from '@/types/api';
 import { getImageURL, getMovieDetails, getTVShowDetails } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
-import LoadingError from '@/components/ui/LoadingErrorComponent';
+import LoadingError from '@/components/LoadingErrorComponent';
 
 import closeIcon from '@/assets/close.svg';
 
