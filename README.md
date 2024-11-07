@@ -1,3 +1,14 @@
+# React + TypeScript + Vite
+
+Some Explanation for this project:
+
+Decided to go with vite, a simple client side project is the best for this app.
+
+Next js would have been ok, but the point is to expose and interact with api data to the frontend.
+
+Our routing will be managed using react-router.
+Our states will be managed by zustand/Reactquery. React-query might be a overkill for this app but i it will manage error and loading states for me plus its standard in the industry.
+
 MileStones:
 
 X Get the data to fetch.(Will only use the page1 of the returned api for my carousels)
@@ -17,5 +28,4 @@ X Working Query states for both Home and De tails, with its individual requests 
 X Adding missing geners to the Home page
 
 Optional:
-
-X Search, maybe debounce for request.( should have search by tv or movies, debounce for not making the request on every input change)
+Search with searchParams, maybe debounce for request.( should have search by tv or movies, debounce for not making the request on every input change)
