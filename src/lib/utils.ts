@@ -71,3 +71,12 @@ export const getComedyMovies = async (): Promise<MovieResponse> => {
   }
   return response.json();
 }
+
+export const getSearchMulti = async (query: string): Promise<MovieResponse> => {
+  const url = `https://api.themoviedb.org/3/search/multi?query=${query}&language=en-US`;
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.json();
+}

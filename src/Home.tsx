@@ -6,6 +6,17 @@ import { MovieResponse, TVShowResponse } from './types/api';
 import { getTrendingMovies, getTrendingTVSeries, getComedyMovies, getRomanticMovies } from './lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import LoadingError from './components/LoadingErrorComponent';
+import SearchInput from './components/SearchInput2';
+
+function Header() {
+  return (
+    <header className="flex w-screen p-4 bg-black justify-center items-center">
+      <div className="flex w-1/2 h-full">
+        <SearchInput />
+      </div>
+  </header>
+  );
+}
 
 function Home() {
   const {
@@ -46,6 +57,7 @@ function Home() {
 
   return (
     <>
+      <Header />
       <div className='flex w-screen h-[400px]'>
         <Hero />
       </div>
