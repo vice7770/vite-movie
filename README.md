@@ -4,7 +4,7 @@ Some Explanation for this project:
 
 Decided to go with vite, a simple client side project is the best for this app.
 
-Next js would have been ok, but the point is to interact and expose api data to the frontend.
+Next js would have been ok, but the point is to expose and interact with api data to the frontend.
 
 Our routing will be managed using react-router.
 Our states will be managed by zustand/Reactquery. React-query might be a overkill for this app but i it will manage error and loading states for me plus its standard in the industry.
@@ -15,6 +15,7 @@ X Necessary api calls with types, top movies, top series, romance, comedy.(Will 
 X UI for Main page, 4 couressel(Missing the 2 other categories)
 X Get routing working to redirect to other pages with param.
 X Details Screen
-Install state management zustand and React Query, keep state of selected element selected.
+X Install state management zustand and React Query, keep state of selected element selected. (Zustand wont be needed).
+Working Query states for both Home and Details, with its individual requests and queryKeys.
 Optional:
 Search with searchParams, maybe debounce for request.
