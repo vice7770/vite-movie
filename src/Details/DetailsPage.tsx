@@ -5,6 +5,8 @@ import { getImageURL, getMovieDetails, getTVShowDetails } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import LoadingError from '@/components/ui/LoadingErrorComponent';
 
+import closeIcon from '@/assets/close.svg';
+
 interface Props {
     id: string;
     type: string;
@@ -65,12 +67,12 @@ function DetailsPage(props : Props) {
         <div className="relative w-screen h-screen flex flex-col items-center bg-black p-5">
         {isFullScreen && (
             <div className="absolute top-0 right-0 p-4 z-10">
-            <button
-                onClick={handleCloseFullScreen}
-                className="bg-white text-black px-4 py-2 rounded"
-            >
-                Close
-            </button>
+                <button
+                    onClick={handleCloseFullScreen}
+                    className="bg-transparent border-none hover:border-none focus:outline-none focus:border-none"
+                >
+                    <img src={closeIcon} className="w-12 h-12" alt="Close icon" />
+                </button>
             </div>
         )}
         {isFullScreen && (
@@ -97,7 +99,7 @@ function DetailsPage(props : Props) {
                             onClick={handlePlayFullScreen}
                             className="bg-white text-black px-4 py-2 rounded"
                             >
-                            Play Trailer
+                                Play Trailer
                             </button>
                         </div>
                         <p className="mb-2">{data?.vote_average}/10</p>
