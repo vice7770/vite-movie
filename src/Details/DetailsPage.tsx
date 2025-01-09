@@ -94,7 +94,9 @@ function DetailsPage(props : Props) {
                             <img src={getImageURL(data?.poster_path ?? '')} alt={data?.id.toString()} className='h-full w-full object-contain' />
                         </div>
                         <div className="flex items-center justify-center gap-x-10">
-                            <h1 className="text-2xl font-bold mb-2">{data?.title || data?.original_name}</h1>
+                            <h1 className="text-2xl font-bold mb-2">
+                                {type === 'movie' ? (data as DetailsMovieResponse)?.title : (data as DetailsTVShowResponse)?.original_name}
+                            </h1>
                             <button
                             onClick={handlePlayFullScreen}
                             className="bg-white text-black px-4 py-2 rounded"
